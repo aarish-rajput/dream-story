@@ -12,7 +12,6 @@ interface Book {
   author: {
     name: string;
   };
-  // optionally add more fields if needed
 }
 
 interface GetBooksDbResponse {
@@ -23,11 +22,12 @@ interface GetBooksDbResponse {
 export default async function BooksPage({
   searchParams,
 }: {
-  searchParams?: {
-    page?: string;
-  };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const pageParam = searchParams?.page;
+  const pageParam = Array.isArray(searchParams?.page)
+    ? searchParams?.page[0]
+    : searchParams?.page;
+
   const currentPage = pageParam ? parseInt(pageParam, 10) : 1;
   const limit = 3;
 
