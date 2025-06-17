@@ -4,12 +4,6 @@ import Link from "next/link";
 import Pagination from "@/components/Pagination";
 import Bookcard from "@/components/Bookcard";
 
-interface SearchParamsProps {
-  searchParams?: {
-    page?: string;
-  };
-}
-
 interface Book {
   _id: string;
   slug: string;
@@ -26,7 +20,13 @@ interface GetBooksDbResponse {
   totalCount: number;
 }
 
-export default async function BooksPage({ searchParams }: SearchParamsProps) {
+export default async function BooksPage({
+  searchParams,
+}: {
+  searchParams?: {
+    page?: string;
+  };
+}) {
   const pageParam = searchParams?.page;
   const currentPage = pageParam ? parseInt(pageParam, 10) : 1;
   const limit = 3;
