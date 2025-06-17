@@ -1,6 +1,5 @@
 "use server";
 
-import validate from "deep-email-validator";
 import db from "@/utils/db";
 import User from "@/models/user";
 import { hashPassword, comparePassword } from "@/utils/auth";
@@ -78,9 +77,6 @@ export const loginOrRegisterAction = async (
   email: string,
   password: string
 ): Promise<AuthResult> => {
-  const { valid } = await validate(email);
-  if (!valid) return { error: "Invalid email", loggedIn: false };
-
   if (!password || password.length < 6) {
     return { error: "Password must be at least 6 characters", loggedIn: false };
   }
