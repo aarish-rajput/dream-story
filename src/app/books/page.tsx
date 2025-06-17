@@ -4,26 +4,9 @@ import Link from "next/link";
 import Pagination from "@/components/Pagination";
 import Bookcard from "@/components/Bookcard";
 
-interface Book {
-  _id: string;
-  slug: string;
-  bookTitle: string;
-  bookCoverUrl: string;
-  author: {
-    name: string;
-  };
-}
-
-interface GetBooksDbResponse {
-  books: Book[];
-  totalCount: number;
-}
-
 export default async function BooksPage({
   searchParams,
-}: {
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
+}: any) {
   const pageParam = Array.isArray(searchParams?.page)
     ? searchParams?.page[0]
     : searchParams?.page;
@@ -31,7 +14,7 @@ export default async function BooksPage({
   const currentPage = pageParam ? parseInt(pageParam, 10) : 1;
   const limit = 3;
 
-  const { books, totalCount }: GetBooksDbResponse = await getBooksDb(
+  const { books, totalCount } = await getBooksDb(
     currentPage,
     limit
   );
@@ -45,7 +28,7 @@ export default async function BooksPage({
         <br />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {books.map((book) => (
+          {books.map((book: any) => (
             <div
               key={book._id}
               className="transform transition duration-300 hover:scale-105 hover:shadow-lg"
