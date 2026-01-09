@@ -13,8 +13,7 @@ You can view stories in a beautiful flipbook UI, change page colors, and downloa
 
 ## 🚀 Live Demo
 
-[https://your-app-url.vercel.app](https://your-app-url.vercel.app)  
-(_replace with your deployed URL_)
+https://dream-story-sable.vercel.app
 
 ## 🛠️ Tech Stack
 
